@@ -1,0 +1,251 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* ── Header ───────────────────────────────────────────── */
+.header {
+  background: var(--surface);
+  border-bottom: 2px solid var(--warm);
+  padding: 10px 24px;
+  text-align: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.header h1 {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.04em;
+}
+
+/* ── Meadow ───────────────────────────────────────────── */
+.meadow {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #C8E6D4 0%, #D8EED8 60%, #A8CC98 100%);
+}
+
+.meadow-svg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.animals-row {
+  position: absolute;
+  bottom: 3%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  padding: 0 5%;
+}
+
+/* ── Food tray ────────────────────────────────────────── */
+.food-tray {
+  background: var(--surface);
+  border-top: 2px solid var(--lilac);
+  padding: 10px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(8px, 2vw, 20px);
+  flex-shrink: 0;
+  box-shadow: 0 -2px 12px rgba(0,0,0,0.06);
+}
+
+.food-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: transform 0.15s;
+  font-family: 'Nunito', sans-serif;
+  color: var(--text);
+}
+
+.food-btn:hover {
+  transform: translateY(-3px);
+}
+
+.food-btn.selected {
+  background: rgba(244,160,176,0.25);
+  transform: translateY(-4px) scale(1.08);
+}
+
+.food-emoji {
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  line-height: 1;
+}
+
+.food-name {
+  font-size: clamp(0.55rem, 1.5vw, 0.7rem);
+  font-weight: 600;
+  text-align: center;
+  color: #7B6B65;
+  max-width: 56px;
+  line-height: 1.2;
+}
+
+/* ── Animal container ─────────────────────────────────── */
+.animal-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.animal-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.animal-svg-wrap {
+  animation: sway 4s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+.animal-svg-wrap.eating {
+  animation: nom 0.35s ease-in-out 4;
+}
+
+.animal-svg-wrap.bouncing {
+  animation: bounce 0.6s ease-in-out infinite;
+}
+
+.animal-svg-wrap.glowing {
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+/* ── Overlays: hearts, sparkles, speech ──────────────── */
+.heart-particle {
+  position: absolute;
+  font-size: 1.1rem;
+  pointer-events: none;
+  animation: heartFloat 1.4s ease-out forwards;
+}
+
+.sparkle-particle {
+  position: absolute;
+  pointer-events: none;
+  animation: sparkle 0.7s ease-out forwards;
+  font-size: 1rem;
+}
+
+.speech-bubble {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--surface);
+  border: 2px solid var(--lilac);
+  border-radius: 16px;
+  padding: 5px 12px;
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text);
+  white-space: nowrap;
+  pointer-events: none;
+  animation: bubblePop 2s ease-in-out forwards;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  z-index: 10;
+}
+
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--lilac);
+}
+
+/* ── Happiness meter ──────────────────────────────────── */
+.happiness-meter {
+  margin-bottom: 6px;
+  display: flex;
+  justify-content: center;
+}
+
+.happiness-meter svg {
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.15));
+}
+
+.happiness-meter.glowing svg {
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+/* ── Animal name label ────────────────────────────────── */
+.animal-label {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: clamp(0.7rem, 2vw, 0.9rem);
+  font-weight: 500;
+  color: var(--text);
+  margin-top: 4px;
+  opacity: 0.75;
+}
+
+/* ── Cursor states ────────────────────────────────────── */
+.animal-container.has-food {
+  cursor: crosshair;
+}
+
+.animal-container.drag-over .animal-img-wrap {
+  filter: drop-shadow(0 0 14px rgba(249,199,132,0.95));
+  transition: filter 0.12s;
+}
+
+/* ── Animal images ────────────────────────────────────── */
+.animal-img-wrap {
+  animation: sway 4s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+.animal-img-wrap.eating  { animation: nom 0.35s ease-in-out 4; }
+.animal-img-wrap.bouncing { animation: bounce 0.6s ease-in-out infinite; }
+.animal-img-wrap.glowing  { animation: glowPulse 2s ease-in-out infinite; }
+.animal-img-wrap.petting  { animation: none; transform: scale(0.96); }
+
+.animal-img {
+  display: block;
+  object-fit: contain;
+  object-position: center bottom;
+  border-radius: 0;
+  user-select: none;
+  pointer-events: none;
+}
+
+.animal-img--chicken { width: clamp(70px, 18vw, 200px); height: clamp(70px, 18vw, 200px); }
+.animal-img--cat     { width: clamp(65px, 16vw, 180px); height: clamp(65px, 16vw, 180px); }
+.animal-img--cow     { width: clamp(95px, 26vw, 290px); height: clamp(75px, 21vw, 240px); object-position: center center; }
+
+.animal-container--cow {
+  margin-bottom: -30px;
+}
+
+/* ── Responsive scaling ───────────────────────────────── */
+@media (max-width: 480px) {
+  .animals-row { gap: 0; padding: 0 2%; }
+}
