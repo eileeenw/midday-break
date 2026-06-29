@@ -237,9 +237,9 @@
   pointer-events: none;
 }
 
-.animal-img--chicken { width: clamp(70px, 18vw, 200px); height: clamp(70px, 18vw, 200px); }
-.animal-img--cat     { width: clamp(65px, 16vw, 180px); height: clamp(65px, 16vw, 180px); }
-.animal-img--cow     { width: clamp(95px, 26vw, 290px); height: clamp(75px, 21vw, 240px); object-position: center center; }
+.animal-img--chicken { width: clamp(100px, 20vw, 200px); height: clamp(100px, 20vw, 200px); }
+.animal-img--cat     { width: clamp(90px, 18vw, 180px); height: clamp(90px, 18vw, 180px); }
+.animal-img--cow     { width: clamp(120px, 28vw, 290px); height: clamp(100px, 23vw, 240px); object-position: center center; }
 
 .animal-container--cow {
   margin-bottom: -30px;
